@@ -88,7 +88,10 @@ function MyStudio() {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4">
           <IconContext.Provider value={{ className: "text-2xl font-bold" }}>
             {channelStatsItems.map((item, index) => (
-              <div key={index} className="border border-[#20b2d6] p-4">
+              <div
+                key={index}
+                className="border border-[#20b2d6] p-4 rounded-lg"
+              >
                 <div className="mb-4 block">
                   <span className="h-9 w-9 flex justify-center items-center rounded-full bg-[#77d9f1] p-1 text-[#0e657b]">
                     {item.icon}

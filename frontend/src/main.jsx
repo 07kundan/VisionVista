@@ -22,6 +22,8 @@ import Subscriptions from "./pages/Subscription.jsx";
 import TweetPage from "./pages/Tweets.jsx";
 import Support from "./pages/Support.jsx";
 import EditProfile from "./pages/Setting/EditProfile.jsx";
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -167,6 +169,22 @@ const router = createBrowserRouter([
         //     ),
         //   },
         // ],
+      },
+      {
+        path: "/login",
+        element: (
+          <AuthLayout auth={false}>
+            <Login />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <AuthLayout auth={false}>
+            <Signup />
+          </AuthLayout>
+        ),
       },
     ],
   },

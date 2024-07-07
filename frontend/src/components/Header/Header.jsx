@@ -187,7 +187,7 @@ function Header() {
 
             {/* Login button */}
 
-            {authStatus && (
+            {!authStatus && (
               <>
                 <Link to="/login">
                   {/* Log in */}
