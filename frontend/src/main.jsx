@@ -24,6 +24,7 @@ import Support from "./pages/Support.jsx";
 import EditProfile from "./pages/Setting/EditProfile.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -194,5 +195,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    <Toaster
+      position="bottom-right"
+      reverseOrder={true}
+      toastOptions={{
+        error: {
+          style: { borderRadius: "0", color: "red" },
+        },
+        success: {
+          style: { borderRadius: "0", color: "green" },
+        },
+        duration: 2000,
+      }}
+    />
   </React.StrictMode>
 );
