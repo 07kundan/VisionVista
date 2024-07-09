@@ -25,6 +25,9 @@ import EditProfile from "./pages/Setting/EditProfile.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import { Toaster } from "react-hot-toast";
+import VideoDetail from "./pages/VideoDetails.jsx";
+import SearchVideos from "./pages/SearchedVideo.jsx";
+import Playlist from "./pages/Playlist.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +59,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/channel/:username",
+        // path: "/channel/:username",
+        path: "/channel",
         element: (
           <AuthLayout auth pageName={"MyChannel"}>
             <MyChannel />,
@@ -144,50 +148,78 @@ const router = createBrowserRouter([
             <EditProfile />
           </AuthLayout>
         ),
-        // children: [
-        //   {
-        //     path: "change-password",
-        //     element: (
-        //       <AuthLayout auth>
-        //         <EditChangePassword />
-        //       </AuthLayout>
-        //     ),
-        //   },
-        //   {
-        //     path: "channel-info",
-        //     element: (
-        //       <AuthLayout auth>
-        //         <EditChannelInfo />
-        //       </AuthLayout>
-        //     ),
-        //   },
-        //   {
-        //     path: "personal-info",
-        //     element: (
-        //       <AuthLayout auth>
-        //         <EditPersonalInfo />
-        //       </AuthLayout>
-        //     ),
-        //   },
-        // ],
+        children: [
+          {
+            path: "change-password",
+            element: (
+              <AuthLayout auth>
+                {/* <EditChangePassword /> */}
+                <div>change password</div>
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "channel-info",
+            element: (
+              <AuthLayout auth>
+                {/* <EditChannelInfo /> */}
+                <div>edit channel info</div>
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "personal-info",
+            element: (
+              <AuthLayout auth>
+                {/* <EditPersonalInfo /> */}
+                <div>edit profile info</div>
+              </AuthLayout>
+            ),
+          },
+        ],
       },
       {
-        path: "/login",
+        path: "/playlist/:playlistId",
         element: (
-          <AuthLayout auth={false}>
-            <Login />
+          <AuthLayout auth>
+            <Playlist />
           </AuthLayout>
         ),
       },
       {
-        path: "/signup",
+        path: "/video/:videoId",
         element: (
           <AuthLayout auth={false}>
-            <Signup />
+            <VideoDetail />
+            {/* <div>vidoe details</div> */}
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/search/:query",
+        element: (
+          <AuthLayout auth={false}>
+            <SearchVideos />
           </AuthLayout>
         ),
       },
     ],
+  },
+  {
+    path: "/login",
+    element: (
+      <AuthLayout auth={false}>
+        <Login />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <AuthLayout auth={false}>
+        <Signup />
+      </AuthLayout>
+    ),
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

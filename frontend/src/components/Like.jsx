@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { LoginPopUp } from "..";
+import { LoginPopUp } from ".";
 ("../LoginSignup/LoginPopup");
 // import { useLike } from "../../hooks/like.hook";
 

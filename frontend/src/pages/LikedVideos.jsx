@@ -1,9 +1,6 @@
 import React from "react";
 // import { useLikedVideos } from "../hooks/like.hook.js";
-import {
-  VideolistCard,
-  LikedVideolistCardSkeleton,
-} from "../components/index.js";
+import { VideolistCard, VideolistCardSkeleton } from "../components/index.js";
 import { Link } from "react-router-dom";
 
 function LikedVideos() {
@@ -20,7 +17,7 @@ function LikedVideos() {
           {Array(5)
             .fill()
             .map((_, index) => (
-              <LikedVideolistCardSkeleton key={index} />
+              <VideolistCardSkeleton key={index} />
             ))}
         </div>
       </section>

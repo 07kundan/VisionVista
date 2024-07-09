@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { VideolistCard, LikedVideolistCardSkeleton } from "../components/index";
+import { VideolistCard, VideolistCardSkeleton } from "../components/index";
 // import { useClearWatchHistory, useWatchHistory } from "../hooks/user.hook";
 
 function History() {
@@ -26,7 +26,7 @@ function History() {
           {Array(5)
             .fill()
             .map((_, index) => (
-              <LikedVideolistCardSkeleton key={index} />
+              <VideolistCardSkeleton key={index} />
             ))}
         </div>
       </section>

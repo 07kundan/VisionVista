@@ -1,6 +1,6 @@
 import React from "react";
 
-function LikedVideolistCardSkeleton() {
+function VideolistCardSkeleton() {
   return (
     <div className="flex w-full max-w-3xl space-x-4 animate-pulse">
       <div className="flex-none w-5/12">
@@ -24,4 +24,4 @@ function LikedVideolistCardSkeleton() {
   );
 }
 
-export default LikedVideolistCardSkeleton;
+export default VideolistCardSkeleton;
