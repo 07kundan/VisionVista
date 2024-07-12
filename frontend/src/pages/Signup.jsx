@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth.slice.js";
-// import { useLogin, useRegisterUser } from "../hooks/auth.hook.js";
+import { useLogin, useRegisterUser } from "@/hooks/auth.hook.js";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -39,8 +39,8 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  //   const { mutateAsync: registerUser } = useRegisterUser();
-  //   const { mutateAsync: loginUser } = useLogin();
+  const { mutateAsync: registerUser } = useRegisterUser();
+  const { mutateAsync: loginUser } = useLogin();
 
   const [profilePic, setProfilePic] = useState(null);
   const [coverPic, setCoverPic] = useState(null);
@@ -58,10 +58,8 @@ function Signup() {
       });
       // console.log("logged In user", loggedInUser);
       if (loggedInUser) {
-        // console.log("loggin user");
         dispatch(setUser(loggedInUser));
         navigate("/");
-        // console.log("navigated");
       }
     }
   };
@@ -72,7 +70,7 @@ function Signup() {
   const [selectedCover, setSelectedCover] = useState("");
 
   return (
-    <div className="w-full text-white flex justify-center items-center">
+    <div className="w-full h-screen bg-zinc-950/90 text-white flex justify-center items-center">
       <div className="w-3/4 py-8 px-10 my-8 border-2 border-[#20b2d6] rounded-xl">
         <Logo
           className={" w-full text-center text-2xl font-semibold uppercase"}
@@ -84,7 +82,7 @@ function Signup() {
 
         {/* Sign up content */}
         <form
-          //   onSubmit={handleSubmit(createAccount)}
+          onSubmit={handleSubmit(createAccount)}
           className="md:flex md:flex-col md:items-center mt-8 space-y-8"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-around md:w-full ">

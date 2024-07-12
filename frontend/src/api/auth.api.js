@@ -1,10 +1,10 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { BASE_URL } from "@/constants";
+import { BASE_URL } from "../constants";
 
 const API = axios.create({
   baseURL: BASE_URL,
-  withCredentials: ture,
+  withCredentials: true,
 });
 
 //Axios interceptors are functions that Axios runs before a request is sent or after a response is received.
@@ -41,10 +41,13 @@ API.interceptors.response.use(
   }
 );
 
+// login api call
+
 export const login = async (formData) => {
   try {
     const response = await API.post("/users/login", formData);
 
+    // console.log("response", response);
     if (response && response.data) {
       const user = response.data.data.user;
       toast.success(response.data.message);
@@ -54,7 +57,82 @@ export const login = async (formData) => {
     }
   } catch (error) {
     console.log("error");
+    toast.error("login unsuccessful", error?.response?.data?.error);
+    throw error;
+  }
+};
+
+// logout api call
+export const logout = async () => {
+  try {
+    const { data } = await API.post("/users/logout");
+    toast.success(data?.message);
+    return data;
+  } catch (error) {
     toast.error(error?.response?.data?.error);
+    throw error?.response?.data?.error;
+  }
+};
+
+// register api call
+export const register = async (data) => {
+  const formData = new FormData();
+  if (!data.avatar) {
+    toast.error("Avatar is required");
+    return;
+  }
+  formData.append("avatar", data.avatar);
+  if (data.coverImage) {
+    formData.append("coverImage", data.coverImage);
+  }
+  formData.append("username", data.username);
+  formData.append("email", data.email);
+  formData.append("password", data.password);
+  formData.append("fullName", data.fullName);
+  // console.log("formData", formData);
+  try {
+    const { data } = await API.post("/users/register", formData);
+    // console.log("api data", data);
+    toast.success(data?.message);
+    return data?.data;
+  } catch (error) {
+    toast.error(error);
+    console.log(error);
+    throw error?.response?.data?.error;
+  }
+};
+
+// currentUser api call
+
+export const getCurrentUser = async () => {
+  try {
+    const { data } = await API.get("/users/current-user");
+    // console.log(data);
+    return data?.data?.user;
+  } catch (error) {
+    // console.log(error);
+    throw error?.response?.data?.error;
+  }
+};
+
+// change password api call
+export const changePassword = async (newPassData) => {
+  try {
+    const { data } = await API.post("/users/change-password", newPassData);
+    toast.success(data?.message);
+    return data;
+  } catch (error) {
+    toast.error(error?.response?.data?.error);
+    throw error?.response?.data?.error;
+  }
+};
+
+// refreshAccessToken api call
+export const refreshAccessToken = async () => {
+  try {
+    const { data } = await API.post("/users/refresh-token");
+    return data?.data;
+  } catch (error) {
     throw error?.response?.data?.error;
   }
 };

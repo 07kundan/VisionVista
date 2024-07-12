@@ -40,8 +40,7 @@ function Sidebar() {
     },
     {
       name: "My Channel",
-      path: `/channel`,
-      // path: `/channel/${username}/videos`,
+      path: `/channel/${username}/videos`,
       icon: <GoDeviceCameraVideo />,
       onMobile: false,
     },

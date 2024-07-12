@@ -7,48 +7,47 @@ import { IconContext } from "react-icons";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 // -------------------------------------
 
+import Logo from "./Logo";
+import Search from "./Search";
+import { CustomButton_1 } from "../Buttons/CustomButton";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "./Logo";
-import Search from "./Search";
-import { Button } from "../ui/button";
-
-// ################ Features ############
-
-import { setUser } from "../../features/auth.slice";
-import { CustomButton_1 } from "../Buttons/CustomButton";
-// import { setShowUploadVideo } from "../../features/ui.slice";
-
-// ---------------------
-
-// ################ Hooks ###############
-// import { useLogout } from "../../hooks/auth.hook";
-// --------------------------------------
+import { setGuest, setUser } from "../../features/auth.slice";
+import { setShowUploadVideo } from "../../features/ui.slice";
+import { useLogout } from "@/hooks/auth.hook";
 
 function Header() {
   const navigate = useNavigate();
-  //   const location = useLocation();
+  const location = useLocation();
   const dispatch = useDispatch();
   const authStatus = useSelector((state) => state.auth.authStatus);
   const userData = useSelector((state) => state.auth.user);
+  const guestUser = useSelector((state) => state.auth.guest);
 
-  //   const { mutateAsync: logout } = useLogout();
+  const { mutateAsync: logout } = useLogout();
 
   const [sideBar, setSideBar] = useState(false);
 
-  //   // method for logout button
+  // method for logout button
   const handleLogout = async () => {
-    // const sessionStatus = await logout();
-    // if (sessionStatus) {
-    //   dispatch(setUser(null));
-    // }
+    if (guestUser) {
+      dispatch(setGuest(null));
+    }
+    const sessionStatus = await logout();
+    if (sessionStatus) {
+      dispatch(setUser(null));
+    }
   };
-  //   // --------------------
+  // --------------------
 
   const handleUploadVideo = () => {
-    navigate("/");
-    //   dispatch(setShowUploadVideo(true));
+    if (!userData) {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
+    dispatch(setShowUploadVideo(true));
   };
 
   // side bar Items for smaller screen
@@ -82,9 +81,9 @@ function Header() {
     setSideBar((prev) => !prev);
   };
 
-  //   useEffect(() => {
-  //     setSideBar(false);
-  //   }, [location.pathname]);
+  useEffect(() => {
+    setSideBar(false);
+  }, [location.pathname]);
 
   return (
     <header className="z-[9999] sticky inset-x-0 top-0 w-full border-b border-[#20b2d6] text-white bg-[#121212] px-4">

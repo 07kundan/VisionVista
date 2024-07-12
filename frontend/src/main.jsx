@@ -28,6 +28,9 @@ import { Toaster } from "react-hot-toast";
 import VideoDetail from "./pages/VideoDetails.jsx";
 import SearchVideos from "./pages/SearchedVideo.jsx";
 import Playlist from "./pages/Playlist.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -59,8 +62,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        // path: "/channel/:username",
-        path: "/channel",
+        path: "/channel/:username",
         element: (
           <AuthLayout auth pageName={"MyChannel"}>
             <MyChannel />,
@@ -224,21 +226,23 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-    <Toaster
-      position="bottom-right"
-      reverseOrder={true}
-      toastOptions={{
-        error: {
-          style: { borderRadius: "0", color: "red" },
-        },
-        success: {
-          style: { borderRadius: "0", color: "green" },
-        },
-        duration: 2000,
-      }}
-    />
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={true}
+        toastOptions={{
+          error: {
+            style: { borderRadius: "0", color: "red" },
+          },
+          success: {
+            style: { borderRadius: "0", color: "green" },
+          },
+          duration: 2000,
+        }}
+      />
+    </QueryClientProvider>
   </React.StrictMode>
 );

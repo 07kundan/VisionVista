@@ -12,15 +12,15 @@ function Login() {
   const navigate = useNavigate();
 
   const onLogin = (session) => {
-    console.log("called");
+    // console.log("called");
     console.log(session);
     dispatch(setUser(session));
     navigate("/");
-    console.log("navigating");
+    // console.log("navigating");
   };
 
   return (
-    <div className="w-full  text-white flex justify-center items-center">
+    <div className="w-full h-screen  bg-zinc-950/90 text-white flex justify-center items-center">
       <div className="py-12 px-10 my-8 border-2 border-[#20b2d6] rounded-xl">
         <div className="w-full flex justify-center items-center">
           <Logo

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input, CustomButton_1 } from "../index";
-// import { useLogin } from "../hooks/auth.hook";
+import { useLogin } from "../../hooks/auth.hook";
 
 function LoginForm({ onLogin }) {
   const schema = z.object({
@@ -22,16 +22,14 @@ function LoginForm({ onLogin }) {
   });
 
   // destructuring return value from uselogin hook
-  //   const { mutateAsync: login, isPending, isError, error } = useLogin();
-  const isError = false;
-  const isPending = false;
+  const { mutateAsync: login, isPending, isError, error } = useLogin();
 
   // method for login user
   const loginUser = async (formdata) => {
     try {
-      //   console.log(formdata);
+      // console.log("formdata", formdata);
       const session = await login(formdata);
-      console.log("session", session);
+      // console.log("session", session);
       if (session) {
         onLogin(session);
       }
@@ -41,10 +39,7 @@ function LoginForm({ onLogin }) {
   };
 
   return (
-    <form
-      // onSubmit={handleSubmit(loginUser)}
-      className="flex flex-col gap-2"
-    >
+    <form onSubmit={handleSubmit(loginUser)} className="flex flex-col gap-2">
       <Input
         label={"Username/Email*"}
         type="text"
@@ -73,7 +68,9 @@ function LoginForm({ onLogin }) {
         <span className="text-red-500 text-sm">{errors.password.message}</span>
       )}
 
-      {isError && <span className="text-red-500 text-sm">{error.message}</span>}
+      {isError && (
+        <span className="text-red-500 text-sm">{error?.message}</span>
+      )}
       {/* login button */}
       <CustomButton_1 type="submit">
         {isPending ? "Logging In" : "Login"}

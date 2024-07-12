@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const guestUser = {
+  _id: "12234",
+  fullName: "Guest",
+  username: "SignUpKrLeBhai",
+  email: "guest@gmail.com",
+  avatar: "avae",
+};
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
-    authStatus: true,
+    authStatus: null,
+    guest: false,
   },
   reducers: {
     setUser: (state, action) => {
@@ -16,8 +25,19 @@ const authSlice = createSlice({
         state.user = action.payload;
       }
     },
+    setGuest: (state, action) => {
+      if (!action.payload) {
+        state.guest = false;
+        state.authStatus = false;
+        state.user = null;
+      } else {
+        state.user = guestUser;
+        state.authStatus = true;
+        state.guest = true;
+      }
+    },
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, setGuest } = authSlice.actions;
 export default authSlice.reducer;
