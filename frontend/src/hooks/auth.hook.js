@@ -1,7 +1,13 @@
-import { getCurrentUser, login, logout, register } from "@/api/auth.api";
+import {
+  changePassword,
+  getCurrentUser,
+  login,
+  logout,
+  register,
+} from "@/api/auth.api";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 
-// custom hook for calling login method
+// custom hook for login
 export const useLogin = () => {
   const queryClient = useQueryClient();
   // console.log("use login");
@@ -14,28 +20,33 @@ export const useLogin = () => {
   });
 };
 
-// custom hook for calling logout method
-
+// custom hook for logout
 export const useLogout = () => {
   return useMutation({
     mutationFn: () => logout(),
   });
 };
 
-// custom hook for calling registered method
+// custom hook for registerUser
 export const useRegisterUser = () => {
   return useMutation({
     mutationFn: (user) => register(user),
   });
 };
 
-// custom hook for calling current user method
-
+// custom hook for currentUser
 export const useCurrentUser = () => {
   return useQuery({
     queryKey: ["currentUser"],
     queryFn: () => getCurrentUser(),
     staleTime: 1000 * 60 * 5,
     retry: 1,
+  });
+};
+
+// custom hook for changePassword
+export const useChangePassword = () => {
+  return useMutation({
+    mutationFn: (data) => changePassword(data),
   });
 };

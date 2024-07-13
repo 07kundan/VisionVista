@@ -42,7 +42,6 @@ API.interceptors.response.use(
 );
 
 // login api call
-
 export const login = async (formData) => {
   try {
     const response = await API.post("/users/login", formData);
