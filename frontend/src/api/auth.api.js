@@ -9,12 +9,11 @@ const API = axios.create({
 
 //Axios interceptors are functions that Axios runs before a request is sent or after a response is received.
 
-// below nterceptor handles the case where an API request fails because the JWT has expired. It automatically tries to refresh the token and retry the request. If the token refresh is successful, the request is retried with the new token. If it fails or if the error is not related to JWT expiry, the error is propagated as usual.
+// below interceptor handles the case where an API request fails because the JWT has expired. It automatically tries to refresh the token and retry the request. If the token refresh is successful, the request is retried with the new token. If it fails or if the error is not related to JWT expiry, the error is propagated as usual.
 
 // Assuming API is your Axios instance
 API.interceptors.response.use(
   (response) => response, // For successful requests, it'll return the response
-
   //   handling error
   async (error) => {
     const originalRequest = error.config;

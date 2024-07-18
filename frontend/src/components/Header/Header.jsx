@@ -86,7 +86,7 @@ function Header() {
   }, [location.pathname]);
 
   return (
-    <header className="z-[9999] sticky inset-x-0 top-0 w-full border-b border-[#20b2d6] text-white bg-[#121212] px-4">
+    <header className="z-[9999] sticky inset-x-0 top-0 w-full border-b border-[#20b2d6] bg-[#121212] py-1 px-4 sm:py-0">
       <nav className="mx-auto flex max-w-7xl items-center py-2">
         <Link to="/" className="flex items-center w-2/12">
           <Logo className="shrink-0 sm:w-[8rem]" mobile={true} />
@@ -99,9 +99,9 @@ function Header() {
           onClick={handleSideBar}
           className="cursor-pointer group peer ml-4 flex w-6 shrink-0 flex-wrap gap-y-1.5 sm:hidden "
         >
-          <span className="block h-[2px] w-full bg-white group-hover:bg-[#ae7aff]"></span>
-          <span className="block h-[2px] w-2/3 bg-white group-hover:bg-[#ae7aff]"></span>
-          <span className="block h-[2px] w-full bg-white group-hover:bg-[#ae7aff]"></span>
+          <span className="block h-[2px] w-full bg-[#09ceff] group-hover:bg-[#005064]"></span>
+          <span className="block h-[2px] w-2/3 bg-[#09ceff] group-hover:bg-[#005064]"></span>
+          <span className="block h-[2px] w-full bg-[#09ceff] group-hover:bg-[#005064]"></span>
         </button>
         {/* --------------- */}
 
@@ -109,11 +109,11 @@ function Header() {
         <div
           className={`fixed inset-y-0  right-0 flex w-full max-w-xs shrink-0 ${
             sideBar ? "translate-x-0" : "translate-x-full"
-          } flex-col border-l border-white duration-200 sm:static sm:ml-4 sm:w-auto sm:translate-x-0 sm:border-none`}
+          } flex-col border-l bg-[#121212] sm:bg-none border-[#20b2d6] duration-200 sm:static sm:ml-4 sm:w-auto sm:translate-x-0 sm:border-none`}
         >
           {/* for smaller screen */}
           <>
-            <div className="relative flex w-full h-[4rem] items-center justify-end border-b border-white px-4 py-2 sm:hidden">
+            <div className="relative flex w-full h-[4rem] items-center justify-end border-b border-[#20b2d6] px-4 py-2 sm:hidden">
               <CustomButton_1
                 onClick={handleSideBar}
                 className="inline-block cursor-pointer"
@@ -123,12 +123,12 @@ function Header() {
             </div>
 
             <IconContext.Provider value={{ className: "w-6 h-6" }}>
-              <ul className="my-4 flex w-full flex-wrap gap-2 px-4 sm:hidden">
+              <ul className="my-4 flex w-full flex-wrap gap-3 px-4 sm:hidden">
                 {mobileSidebarItems.map((item, index) => (
-                  <li key={index} className="w-full">
+                  <li key={index} className="w-full ">
                     <Link
                       to={item.path}
-                      className="flex w-full items-center justify-start gap-x-4 border border-white px-4 py-1.5 text-left hover:bg-[#ae7aff] hover:text-black focus:border-[#ae7aff] focus:bg-[#ae7aff] focus:text-black"
+                      className="flex w-full items-center justify-start gap-x-4 border border-[#20b2d6] px-4 py-1.5 text-left hover:bg-[#095c70] rounded-md hover:text-black focus:border-[#095c70] focus:bg-[#095c70] focus:text-black"
                     >
                       <span className="inline-block w-full max-w-[20px] group-hover:mr-4 lg:mr-4">
                         {item.icon}
@@ -143,7 +143,7 @@ function Header() {
 
           {/* -------------------------*/}
 
-          <div className="mb-8 mt-auto flex w-full flex-wrap gap-4 px-4 sm:mb-0 sm:mt-0 sm:items-center sm:px-0">
+          <div className="mt-8 flex w-full flex-wrap justify-center gap-4 px-4 sm:justify-normal sm:mb-0 sm:mt-0 sm:items-center sm:px-0 ">
             {authStatus ? (
               <CustomButton_1 onClick={handleUploadVideo}>
                 Upload Video

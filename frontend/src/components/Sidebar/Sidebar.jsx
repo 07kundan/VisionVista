@@ -66,7 +66,7 @@ function Sidebar() {
 
   return (
     <aside
-      className={`z-40 group absolute inset-x-0 bottom-0 w-full shrink-0 border-t border-[#20b2d6] px-2 py-2 sm:absolute sm:inset-y-0 sm:max-w-[75px] sm:border-r sm:border-t-0 sm:py-6  sm:hover:max-w-[285px] bg-transparent text-[#14d0ff] ${
+      className={`z-40 bg-[#000000]  group absolute inset-x-0 bottom-0 w-full shrink-0 border-t border-[#20b2d6] px-2 py-2 sm:absolute sm:inset-y-0 sm:max-w-[75px] sm:border-r sm:border-t-0 sm:py-6  sm:hover:max-w-[285px] bg-transparent text-[#14d0ff] ${
         fullSize ? "lg:sticky lg:max-w-[285px]" : ""
       }`}
     >
@@ -80,17 +80,10 @@ function Sidebar() {
             >
               <Link
                 to={item.path}
-                className="flex flex-col items-center justify-center border-none py-1 focus:text-[#20b2d6] sm:w-full sm:flex-row sm:gap-2 sm:border sm:p-2 sm:hover:bg-[#20b2d6] sm:hover:text-black sm:focus:border-[#044e60] sm:focus:bg-[#20b2d6] sm:focus:text-black sm:group-hover:justify-start sm:group-hover:px-4 sm:rounded-sm lg:justify-start lg:px-4"
+                className="flex flex-col items-center justify-center border-none py-2 focus:text-[#20b2d6] sm:w-full sm:flex-row sm:gap-2 sm:border sm:p-2 sm:hover:bg-[#20b2d6] sm:hover:text-black sm:focus:border-[#044e60] sm:focus:bg-[#20b2d6] sm:focus:text-black sm:group-hover:justify-start sm:group-hover:px-4 sm:rounded-sm lg:justify-start lg:px-4"
               >
                 <span className="inline-block w-5 shrink-0 sm:group-hover:mr-4 lg:mr-4">
                   {item.icon}
-                </span>
-                <span
-                  className={`block sm:hidden sm:group-hover:inline ${
-                    fullSize ? "lg:inline" : ""
-                  }`}
-                >
-                  {item.name}
                 </span>
               </Link>
             </li>
