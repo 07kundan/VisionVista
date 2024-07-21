@@ -11,10 +11,10 @@ import {
 } from "@/api/user.api";
 
 // custom hook for getwatchHistory
-export const useWatchHistory = () => {
+export const useWatchHistory = (isGuest = false) => {
   return useQuery({
-    queryKey: ["watchHistory"],
-    queryFn: () => getWatchHistory(),
+    queryKey: ["watchHistory", isGuest],
+    queryFn: () => getWatchHistory(isGuest),
     refetchOnWindowFocus: true,
   });
 };

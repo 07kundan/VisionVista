@@ -31,7 +31,11 @@ export const getSubscribedChannels = async (subscriberId) => {
 };
 
 // get channel's subscriber api call
-export const getChannelSubscribers = async (channelId) => {
+export const getChannelSubscribers = async (channelId, isGuest) => {
+  if (isGuest) {
+    // toast.success("Sign up kr le bhai");
+    return [];
+  }
   try {
     const { data } = await API.get(`/subscription/c/${channelId}`);
     return data?.data;

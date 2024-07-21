@@ -2,26 +2,30 @@ import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { VideolistCard, VideolistCardSkeleton } from "../components/index";
-// import { useClearWatchHistory, useWatchHistory } from "../hooks/user.hook";
+import { useClearWatchHistory, useWatchHistory } from "../hooks/user.hook";
+import { useSelector } from "react-redux";
 
 function History() {
-  //   const { data: watchHistory, isLoading } = useWatchHistory();
-  //   const [searchTerm, setSearchTerm] = useState("");
+  const isGuest = useSelector((state) => state.auth.guest);
 
-  //   const filteredHistory = watchHistory?.filter((video) =>
-  //     video.video.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
+  const { data: watchHistory, isLoading } = useWatchHistory(isGuest);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  //   const { mutateAsync: clearUserWatchHistory } = useClearWatchHistory();
-  //   const clearWatchHistory = async () => {
-  //     await clearUserWatchHistory();
-  //   };
+  const filteredHistory = watchHistory?.filter((video) =>
+    video.video.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const isLoading = true;
+  const { mutateAsync: clearUserWatchHistory } = useClearWatchHistory();
+  const clearWatchHistory = async () => {
+    await clearUserWatchHistory();
+  };
 
-  if (isLoading)
+  if (isLoading || isGuest)
     return (
       <section className="w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
+        <h1 className="text-center pt-4 text-2xl font-bold">
+          Your History will appear here
+        </h1>
         <div className="flex flex-col gap-4 p-4">
           {Array(5)
             .fill()

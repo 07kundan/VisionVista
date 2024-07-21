@@ -66,7 +66,7 @@ function Sidebar() {
 
   return (
     <aside
-      className={`z-40 bg-[#000000]  group absolute inset-x-0 bottom-0 w-full shrink-0 border-t border-[#20b2d6] px-2 py-2 sm:absolute sm:inset-y-0 sm:max-w-[75px] sm:border-r sm:border-t-0 sm:py-6  sm:hover:max-w-[285px] bg-transparent text-[#14d0ff] ${
+      className={`z-40 bg-[#0a0909]  group absolute inset-x-0 bottom-0 w-full shrink-0 border-t border-[#20b2d6] px-2 py-2 sm:absolute sm:inset-y-0 sm:max-w-[75px] sm:border-r sm:border-t-0 sm:py-6  sm:hover:max-w-[285px] bg-transparent text-[#14d0ff] ${
         fullSize ? "lg:sticky lg:max-w-[285px]" : ""
       }`}
     >
@@ -84,6 +84,13 @@ function Sidebar() {
               >
                 <span className="inline-block w-5 shrink-0 sm:group-hover:mr-4 lg:mr-4">
                   {item.icon}
+                </span>
+                <span
+                  className={` hidden sm:group-hover:inline ${
+                    fullSize ? "lg:inline" : ""
+                  }`}
+                >
+                  {item.name}
                 </span>
               </Link>
             </li>

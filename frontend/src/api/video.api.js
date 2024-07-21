@@ -30,8 +30,8 @@ export const getVideos = async (
       url.searchParams.set("sortBy", sortBy);
       url.searchParams.set("sortType", sortType);
     }
-    console.log("url", url);
-    console.log("href", url.href);
+    // console.log("url", url);
+    // console.log("href", url.href);
 
     const response = await API.get(url.href + "/");
     // console.log(response)

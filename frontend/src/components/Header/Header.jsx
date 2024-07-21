@@ -33,6 +33,7 @@ function Header() {
   const handleLogout = async () => {
     if (guestUser) {
       dispatch(setGuest(null));
+      return;
     }
     const sessionStatus = await logout();
     if (sessionStatus) {

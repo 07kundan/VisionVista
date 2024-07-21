@@ -41,7 +41,7 @@ function AuthLayout({ auth, children, pageName }) {
   };
 
   const handleGuestView = () => {
-    console.log("called");
+    // console.log("called");
     dispatch(setGuest(true));
   };
 

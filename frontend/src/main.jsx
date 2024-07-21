@@ -235,10 +235,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         reverseOrder={true}
         toastOptions={{
           error: {
-            style: { borderRadius: "0", color: "red" },
+            style: { borderRadius: "10px", color: "red", background: "black" },
           },
           success: {
-            style: { borderRadius: "0", color: "green" },
+            style: {
+              borderRadius: "10px",
+              color: "green",
+              background: "black",
+            },
           },
           duration: 2000,
         }}

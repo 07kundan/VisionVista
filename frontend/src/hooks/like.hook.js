@@ -37,9 +37,10 @@ export const useLike = (type) => {
 };
 
 // custom hook for getLikedVideo
-export const useLikedVideos = () => {
+export const useLikedVideos = (isGuest = false) => {
   return useQuery({
-    queryKey: ["likedVideo"],
-    queryFn: () => getLikedVideos(),
+    queryKey: ["likedVideo", isGuest],
+    queryFn: () => getLikedVideos(isGuest),
+    initialData: [],
   });
 };

@@ -36,10 +36,10 @@ export const useSubscribedChannels = (userId) => {
 };
 
 // custom hook for getChannelSubscribers
-export const useChannelSubcribers = (channelId) => {
+export const useChannelSubcribers = (channelId, isGuest) => {
   return useQuery({
-    queryKey: ["channelSubscribers", channelId],
-    queryFn: () => getChannelSubscribers(channelId),
+    queryKey: ["channelSubscribers", channelId, isGuest],
+    queryFn: () => getChannelSubscribers(channelId, isGuest),
     staleTime: 1000 * 60 * 5,
   });
 };

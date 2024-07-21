@@ -1,6 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../constants";
+import { useSelector } from "react-redux";
 
 const API = axios.create({
   baseURL: BASE_URL,
@@ -41,7 +42,11 @@ export const toggleTweetLike = async (tweetId) => {
 };
 
 // get liked Video api call
-export const getLikedVideos = async () => {
+export const getLikedVideos = async (isGuest) => {
+  if (isGuest) {
+    toast.success("Sign up kr le bhai");
+    return [];
+  }
   try {
     const { data } = await API.get("/like/videos");
     return data?.data;

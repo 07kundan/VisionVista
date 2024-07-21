@@ -11,10 +11,10 @@ import {
 } from "@/api/playlist.api";
 
 // custom hook for getUserPlaylist
-export const usePlaylistsByUser = (userId) => {
+export const usePlaylistsByUser = (userId, isGuest) => {
   return useQuery({
-    queryKey: ["playlists", userId],
-    queryFn: () => getUserPlaylists(userId),
+    queryKey: ["playlists", userId, isGuest],
+    queryFn: () => getUserPlaylists(userId, isGuest),
     staleTime: 1000 * 60 * 4,
   });
 };

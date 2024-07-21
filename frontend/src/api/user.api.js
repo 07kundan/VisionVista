@@ -8,7 +8,11 @@ const API = axios.create({
 });
 
 // watch history api call
-export const getWatchHistory = async () => {
+export const getWatchHistory = async (isGuest = false) => {
+  if (isGuest) {
+    toast.success("Sign up kr le bhai");
+    return [];
+  }
   try {
     const { data } = await API.get("/users/watch-history");
     return data?.data;
@@ -32,8 +36,12 @@ export const clearWatchHistory = async () => {
 
 // user's channel profile api call
 export const getUserChannelProfile = async (username) => {
+  if (username === "SignUpKrLeBhai") {
+    toast.success("Sign up kr le bhai");
+    return [];
+  }
   try {
-    const { data } = API.get(`/users/c/${username}`);
+    const { data } = await API.get(`/users/c/${username}`);
     return data?.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);

@@ -1,5 +1,5 @@
 import React from "react";
-// import { formatDuration, timeAgo } from "../assets/timeAgo";
+import { timeAgo, formatDuration } from "@/Js/cal";
 
 // video card
 

@@ -8,7 +8,10 @@ const API = axios.create({
 });
 
 // get user playlists api call
-export const getUserPlaylists = async (userId) => {
+export const getUserPlaylists = async (userId, isGuest) => {
+  if (isGuest) {
+    return [];
+  }
   try {
     const { data } = await API.get(`/playlist/user/${userId}`);
     return data?.data;

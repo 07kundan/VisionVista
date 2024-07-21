@@ -25,6 +25,8 @@ import CommentBox from "./VideoDetailsComponents/CommentBox";
 import VideoDetailSkeleton from "./Skeleton/VideoDetailsSkeleton";
 import PlaylistSkeleton from "./Skeleton/PlaylistSkeleton";
 import ProgressBar from "./ProgressBar";
+import PlaylistCard from "./Playlist/PlaylistCard";
+import Subscriber from "./Subscribe";
 
 export {
   VideoCardSkeleton,
@@ -55,4 +57,6 @@ export {
   VideoDetailSkeleton,
   PlaylistSkeleton,
   ProgressBar,
+  PlaylistCard,
+  Subscriber,
 };

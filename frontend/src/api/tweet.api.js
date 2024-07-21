@@ -1,5 +1,5 @@
-const { BASE_URL } = require("@/constants");
-const { default: axios } = require("axios");
+import { BASE_URL } from "@/constants";
+import axios from "axios";
 
 const API = axios.create({
   baseURL: BASE_URL,
