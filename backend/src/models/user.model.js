@@ -30,14 +30,11 @@ const userSchema = new Schema(
       type: {
         fileId: {
           type: String,
-          required: true,
         },
         url: {
           type: String,
-          required: true,
         },
       },
-      required: true,
     },
     coverImage: {
       _id: false,

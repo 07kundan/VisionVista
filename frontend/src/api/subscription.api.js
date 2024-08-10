@@ -13,7 +13,7 @@ export const toggleSubscribe = async (channelId) => {
     const { data } = await API.post(`/subscription/c/${channelId}`);
     return data?.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     toast.error(error?.response?.data?.error);
     throw error?.response?.data?.error;
   }
@@ -25,7 +25,7 @@ export const getSubscribedChannels = async (subscriberId) => {
     const { data } = await API.get(`/subscription/u/${subscriberId}`);
     return data?.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error?.response?.data?.error;
   }
 };
@@ -40,7 +40,7 @@ export const getChannelSubscribers = async (channelId, isGuest) => {
     const { data } = await API.get(`/subscription/c/${channelId}`);
     return data?.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error?.response?.data?.error;
   }
 };

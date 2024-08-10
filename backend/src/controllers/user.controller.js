@@ -65,13 +65,13 @@ const registerUser = asyncHandler(async (req, res) => {
     coverImg_upOptions
   );
 
-  if (!avatar) throw new ApiError(400, "Avatar uploading failed");
-
+  // if (!avatar) throw new ApiError(400, "Avatar uploading failed");
+  // console.log("account to be created");
   const user = await User.create({
     fullName,
     avatar: {
-      fileId: avatar.public_id,
-      url: avatar.url,
+      fileId: avatar?.public_id || "",
+      url: avatar?.url || "",
     },
     coverImage: {
       fileId: coverImage?.public_id || "",

@@ -79,10 +79,10 @@ function MyChannel() {
             </span>
             <div className="mr-auto inline-block space-y-2">
               <h1 className="font-bold text-2xl">{channelInfo?.fullName}</h1>
-              <p className="text-base text-gray-400">
+              <p className="text-base text-cyan-400">
                 @{channelInfo?.username || " Guest"}
               </p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-cyan-400">
                 {channelInfo?.subscribersCount || 0} Subscribers ·  {" "}
                 {channelInfo?.subscribedToCount || 0} Subscribed
               </p>
@@ -117,7 +117,7 @@ function MyChannel() {
             </div>
           </div>
 
-          <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row justify-between text-wrap overflow-auto border-b-2 border-gray-400 py-2 sm:top-[82px]">
+          <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row justify-between text-wrap overflow-auto border-b-2 border-[#20b2d6] py-2 sm:top-[82px]">
             {channelItems.map((item, index) => (
               <li key={index} className="w-full">
                 <NavLink
@@ -125,8 +125,8 @@ function MyChannel() {
                   className={
                     ({ isActive }) =>
                       isActive
-                        ? "text-lg w-full flex justify-center items-center border-b-2 border-[#20b2d6] bg-zinc-600/70 px-3 py-1.5 text-[#20b2d6] rounded-md" // Active link color
-                        : "text-lg w-full flex justify-center items-center border-b-2  border-transparent px-3 py-1.5 text-gray-400" // Inactive link color
+                        ? "text-lg w-full flex justify-center items-center  bg-[#073a47] px-3 py-1.5 text-[#20b2d6] rounded-md" // Active link color
+                        : "text-lg w-full flex justify-center items-center border-b-2  border-transparent px-3 py-1.5 text-cyan-400" // Inactive link color
                   }
                 >
                   {item.name}

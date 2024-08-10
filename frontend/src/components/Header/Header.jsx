@@ -46,7 +46,7 @@ function Header() {
     if (!userData) {
       navigate("/login");
     } else {
-      navigate("/");
+      navigate("/my-studio");
     }
     dispatch(setShowUploadVideo(true));
   };
@@ -175,7 +175,7 @@ function Header() {
                     />
                     <div className="w-full pt-2 sm:hidden">
                       <h6 className="font-semibold">{userData.fullName}</h6>
-                      <p className="text-sm text-gray-300">
+                      <p className="text-sm text-cyan-700">
                         {userData.username}
                       </p>
                     </div>

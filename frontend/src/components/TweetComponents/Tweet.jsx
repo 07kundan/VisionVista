@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { timeAgo } from "../../assets/timeAgo";
+import { timeAgo } from "@/Js/cal.js";
 import { DropDown, Like } from "../index.js";
-// import { useDeleteTweet, useEditTweet } from "../../hooks/tweet.hook.js";
+import { useDeleteTweet, useEditTweet } from "../../hooks/tweet.hook.js";
 import { useSelector } from "react-redux";
 
 function Tweet({ tweet, isOwner }) {
@@ -9,16 +9,16 @@ function Tweet({ tweet, isOwner }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTweet, setEditedTweet] = useState(tweet?.content);
 
-  //   const { mutateAsync: deleteTweet } = useDeleteTweet();
-  //   const handleDelete = async () => {
-  //     await deleteTweet(tweet?._id);
-  //   };
+  const { mutateAsync: deleteTweet } = useDeleteTweet();
+  const handleDelete = async () => {
+    await deleteTweet(tweet?._id);
+  };
 
   const handleTweetChange = (e) => {
     setEditedTweet(e.target.value);
   };
 
-  //   const { mutateAsync: editTweet } = useEditTweet();
+  const { mutateAsync: editTweet } = useEditTweet();
   const handleEdit = async () => {
     if (editedTweet.trim() === tweet?.content.trim()) {
       setIsEditing(false);
@@ -32,11 +32,11 @@ function Tweet({ tweet, isOwner }) {
     if (res) {
       setIsEditing(false);
     }
-    console.log("edit");
+    // console.log("edit");
   };
 
   return (
-    <div className="py-2 flex h-3/12 justify-between border-b border-gray-700">
+    <div className="py-2 flex h-3/12 justify-between border-b border-cyan-700">
       <div className="flex gap-3  py-4 last:border-b-transparent">
         <div className="h-14 w-14 shrink-0">
           <img
@@ -51,8 +51,8 @@ function Tweet({ tweet, isOwner }) {
               {tweet?.ownerDetails?.username}
             </span>
              
-            <span className="inline-block text-sm text-gray-400">
-              {/* {timeAgo(tweet?.createdAt)} */}
+            <span className="inline-block text-sm text-cyan-600">
+              {timeAgo(tweet?.createdAt)}
             </span>
           </h4>
 
@@ -60,19 +60,19 @@ function Tweet({ tweet, isOwner }) {
             <div className="flex items-center gap-3">
               <input
                 type="text"
-                className="w-full mt-3 p-2 text-gray-200 bg-gray-800 border border-gray-800 rounded-md dark:border-gray-700  focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none"
+                className="w-full mt-3 p-2 text-cyan-400 bg-slate-800/70 border border-cyan-400 rounded-md dark:border-gray-700   dark:bg-cyan-800 focus:outline-none"
                 value={editedTweet}
-                // onChange={handleTweetChange}
+                onChange={handleTweetChange}
               />
               <button
                 onClick={() => setIsEditing(false)}
-                className="mt-3 px-4 py-2 text-sm text-white bg-blue-500 rounded-md"
+                className="mt-3 px-4 py-2 text-sm text-cyan-400 bg-slate-800/70 rounded-md"
               >
                 Cancel
               </button>
               <button
-                // onClick={() => handleEdit()}
-                className="mt-3 px-4 py-2 text-sm text-white bg-blue-500 rounded-md"
+                onClick={() => handleEdit()}
+                className="mt-3 px-4 py-2 text-sm text-cyan-400 bg-slate-800/70 rounded-md"
               >
                 Save
               </button>
@@ -86,12 +86,12 @@ function Tweet({ tweet, isOwner }) {
         {authStatus && isOwner && (
           <div className="w-full flex items-center mr-6">
             <DropDown
-              //   handleDelete={handleDelete}
+              handleDelete={handleDelete}
               handleEdit={() => setIsEditing(true)}
             />
           </div>
         )}
-        <div className="w-full">
+        <div className="w-full ">
           <Like
             id={tweet?._id}
             isLiked={tweet?.isLiked}

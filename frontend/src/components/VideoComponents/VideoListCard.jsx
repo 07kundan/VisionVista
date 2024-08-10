@@ -1,5 +1,5 @@
 import React from "react";
-// import { formatDuration, timeAgo } from "../../assets/timeAgo";
+import { formatDuration } from "@/Js/cal";
 
 const VideolistCard = ({ video, owner }) => {
   return (
@@ -16,7 +16,7 @@ const VideolistCard = ({ video, owner }) => {
                 />
               </div>
               <span className="absolute bottom-1 right-1 inline-block rounded bg-black px-1.5 text-sm">
-                {/* {formatDuration(video?.duration)} */}
+                {formatDuration(video?.duration)}
               </span>
             </div>
           </div>
@@ -32,7 +32,7 @@ const VideolistCard = ({ video, owner }) => {
               <h6 className="mb-1 font-semibold md:max-w-[75%]">
                 {video?.title}
               </h6>
-              <p className="flex text-sm text-gray-200 sm:mt-3">
+              <p className="flex text-sm text-cyan-200 sm:mt-3">
                 {/* {video?.views} Views · {timeAgo(video?.createdAt)} */}
               </p>
               <div className="flex items-center gap-x-4">
@@ -43,14 +43,14 @@ const VideolistCard = ({ video, owner }) => {
                     className="h-full w-full rounded-full object-cover"
                   />
                 </div>
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-cyan-200">
                   {video?.ownerDetails?.username || owner?.username}
                 </p>
               </div>
               <p className="mt-2 hidden text-sm md:block">
-                {/* {video?.description?.length > 100
+                {video?.description?.length > 100
                   ? video?.description.slice(0, 100) + "..."
-                  : video?.description} */}
+                  : video?.description}
               </p>
             </div>
           </div>

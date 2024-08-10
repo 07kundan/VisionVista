@@ -6,36 +6,32 @@ import {
   Tweet,
   SubscriberTweetSkeleton,
 } from "../components/index";
-// import { useAllTweets } from "../hooks/tweet.hook";
-// import { useInView } from "react-intersection-observer";
+import { useAllTweets } from "../hooks/tweet.hook";
+import { useInView } from "react-intersection-observer";
 
 function TweetPage() {
   const currentUserId = useSelector((state) => state.auth.user?._id);
   const authStatus = useSelector((state) => state.auth.authStatus);
 
-  const isFetching = true;
-  const isFetchingNextPage = false;
-  const isRefetching = false;
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    isFetched,
+    isRefetching,
+  } = useAllTweets(authStatus);
 
-  //   const {
-  //     data,
-  //     fetchNextPage,
-  //     hasNextPage,
-  //     isFetchingNextPage,
-  //     isFetching,
-  //     isFetched,
-  //     isRefetching,
-  //   } = useAllTweets(authStatus);
+  const { ref, inView } = useInView();
 
-  //   const { ref, inView } = useInView();
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
-  //   useEffect(() => {
-  //     if (inView && hasNextPage) {
-  //       fetchNextPage();
-  //     }
-  //   }, [inView, hasNextPage, fetchNextPage]);
-
-  //   const allTweets = data?.pages.flatMap((page) => page.docs) || [];
+  const allTweets = data?.pages.flatMap((page) => page.docs) || [];
 
   return (
     <section className="w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
@@ -75,7 +71,7 @@ function TweetPage() {
               ))}
           </div>
         )}
-        {/* <div ref={ref}></div> */}
+        <div ref={ref}></div>
       </div>
     </section>
   );

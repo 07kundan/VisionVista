@@ -2,19 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ChannelSubscribed, VideolistCard } from "../components/index";
 import { Link } from "react-router-dom";
-// import { useSubscribedChannels } from "../hooks/subscription.hook";
+import { useSubscribedChannels } from "../hooks/subscription.hook";
 
 function Subscriptions() {
   const userId = useSelector((state) => state.auth.user?._id);
 
-  //   const { data: subscriptions } = useSubscribedChannels(userId);
+  const { data: subscriptions } = useSubscribedChannels(userId);
 
-  const subscriptions = [];
-  console.log(subscriptions);
+  // console.log(subscriptions);
 
   if (subscriptions && subscriptions.length === 0) {
     return (
-      <div className="container mx-auto px-2">
+      <div className="container mx-auto px-2 text-center mt-6">
         <h1 className="text-3xl font-bold my-2">Subscriptions</h1>
         <p className="text-lg">You are not subscribed to any channels</p>
       </div>

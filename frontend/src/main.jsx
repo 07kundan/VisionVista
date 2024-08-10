@@ -29,6 +29,9 @@ import VideoDetail from "./pages/VideoDetails.jsx";
 import SearchVideos from "./pages/SearchedVideo.jsx";
 import Playlist from "./pages/Playlist.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import EditPersonalInfo from "./pages/Setting/EditPersonalInfo.jsx";
+import EditChannelInfo from "./pages/Setting/EditChannelInfo.jsx";
+import EditChangePassword from "./pages/Setting/EditChangePassword.jsx";
 
 const queryClient = new QueryClient();
 
@@ -155,8 +158,7 @@ const router = createBrowserRouter([
             path: "change-password",
             element: (
               <AuthLayout auth>
-                {/* <EditChangePassword /> */}
-                <div>change password</div>
+                <EditChangePassword />
               </AuthLayout>
             ),
           },
@@ -164,8 +166,7 @@ const router = createBrowserRouter([
             path: "channel-info",
             element: (
               <AuthLayout auth>
-                {/* <EditChannelInfo /> */}
-                <div>edit channel info</div>
+                <EditChannelInfo />
               </AuthLayout>
             ),
           },
@@ -173,8 +174,7 @@ const router = createBrowserRouter([
             path: "personal-info",
             element: (
               <AuthLayout auth>
-                {/* <EditPersonalInfo /> */}
-                <div>edit profile info</div>
+                <EditPersonalInfo />
               </AuthLayout>
             ),
           },
@@ -193,7 +193,6 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout auth={false}>
             <VideoDetail />
-            {/* <div>vidoe details</div> */}
           </AuthLayout>
         ),
       },

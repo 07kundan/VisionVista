@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { LoginPopUp } from ".";
-("../LoginSignup/LoginPopup");
-// import { useLike } from "../../hooks/like.hook";
+import { LoginPopup } from "./index.js";
+import { useLike } from "@/hooks/like.hook.js";
 
 function Like({ id, isLiked, likesCount, type, className, iconSize }) {
   const authStatus = useSelector((state) => state.auth.authStatus);
@@ -17,40 +16,42 @@ function Like({ id, isLiked, likesCount, type, className, iconSize }) {
     setLikesCountState(likesCount);
   }, [isLiked, likesCount]);
 
-  //   const { mutateAsync: like } = useLike(
-  //     type === "comments" ? "comment" : type === "videos" ? "video" : "tweet"
-  //   );
+  const { mutateAsync: like } = useLike(
+    type === "comments" ? "comment" : type === "videos" ? "video" : "tweet"
+  );
 
-  //   const handleLike = async () => {
-  //     if (!authStatus) {
-  //       return setShowLoginPopup(true);
-  //     }
+  const handleLike = async () => {
+    if (!authStatus) {
+      return setShowLoginPopup(true);
+    }
 
-  //     await like(id);
+    await like(id);
 
-  //     setIsLikedState((prev) => !prev);
-  //     setLikesCountState((prev) => (isLikedState ? prev - 1 : prev + 1));
-  //   };
+    setIsLikedState((prev) => !prev);
+    setLikesCountState((prev) => (isLikedState ? prev - 1 : prev + 1));
+  };
 
   if (showLoginPopup)
     return (
-      <LoginPopUp
+      <LoginPopup
         loginTo={`Like ${type}`}
         onClose={() => setShowLoginPopup(false)}
       />
     );
 
   return (
-    <div className={`flex justify-center items-center rounded-lg border`}>
+    <div
+      className={`flex justify-center items-center rounded-lg outline outline-[#083f4d]`}
+    >
       <IconContext.Provider value={{ className: `${iconSize}` }}>
         <button
           onClick={handleLike}
-          className={`${className} w-full justify-center flex items-center gap-x-1 py-1.5 hover:bg-white/10`}
+          className={`${className} w-full justify-center flex items-center gap-x-1 py-1.5 hover:bg-zinc-950`}
         >
           <span className="inline-block">
             {isLikedState ? <FaThumbsUp /> : <FaRegThumbsUp />}
           </span>
-          <span className="text-md text-gray-400">{likesCountState}</span>
+          <span className="text-md text-cyan-400">{likesCountState}</span>
         </button>
       </IconContext.Provider>
     </div>

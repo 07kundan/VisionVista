@@ -1,7 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CustomButton_, ProgressBar, VideoForm } from "../index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useUploadVideo } from "../../hooks/video.hook.js";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { setShowUploadVideo } from "@/features/ui.slice.js";
+import toast from "react-hot-toast";
 
 function UploadVideo() {
-  return <div>UploadVideo</div>;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const [resetStatus, setResetStatus] = useState(false);
+
+  const { mutateAsync: uploadVideo, isPending } = useUploadVideo();
+  const onSave = async (data) => {
+    const res = await uploadVideo(data);
+    if (res) {
+      dispatch(setShowUploadVideo(false));
+    }
+    return res;
+  };
+
+  const handleClose = () => {
+    if (isPending) {
+      toast("Video is still uploading please wait", {
+        icon: "⌛",
+      });
+      return;
+    }
+
+    dispatch(setShowUploadVideo(false));
+  };
+
+  const handleReset = () => {
+    if (isPending) {
+      toast("Video is still uploading please wait", {
+        icon: "⌛",
+      });
+      return;
+    }
+    setResetStatus((prev) => !prev);
+  };
+
+  return (
+    <div
+      className="
+       mt-16 ml-0 overflow-x-hidden  sm:ml-8 z-10 bg-black/50 px-4 pb-[80px] pt-4 sm:px-14 sm:py-8"
+    >
+      <div className="h-full overflow-auto border border-[#20b2d6] bg-[#121212] ">
+        <div className="flex items-center justify-between border-b border-[#20b2d6] p-4">
+          <h2 className="text-xl font-semibold">
+            {isPending && <span>Uploading your Video...</span>}
+            {!isPending && "Upload Video"}
+          </h2>
+          <div className="flex gap-4 items-center justify-center">
+            <CustomButton_ onClick={handleReset} className={"text-black"}>
+              {" "}
+              Reset{" "}
+            </CustomButton_>
+            <button onClick={handleClose}>
+              <IoIosCloseCircleOutline className="w-8 h-8" />
+            </button>
+          </div>
+        </div>
+        {isPending && <ProgressBar />}{" "}
+        <VideoForm
+          onSubmit={onSave}
+          user={user}
+          resetStatus={resetStatus}
+          isPending={isPending}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default UploadVideo;

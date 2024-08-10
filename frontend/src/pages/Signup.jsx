@@ -49,6 +49,7 @@ function Signup() {
   const createAccount = async (data) => {
     data.avatar = profilePic;
     data.coverImage = coverPic;
+    // console.log("registering user...", data);
     const registeredUser = await registerUser(data);
     // console.log("registered user", registeredUser);
     if (registeredUser) {

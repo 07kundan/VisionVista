@@ -34,7 +34,7 @@ export const getVideos = async (
     // console.log("href", url.href);
 
     const response = await API.get(url.href + "/");
-    // console.log(response)
+    // console.log("response", response);
     return response?.data?.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -95,7 +95,7 @@ export const deleteVideo = async (videoId) => {
     toast.success(data?.message);
     return data?.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     toast.error(error?.response?.data?.error);
     throw error?.response?.data?.error;
   }

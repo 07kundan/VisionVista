@@ -29,7 +29,7 @@ const Support = () => {
 
   return (
     <section className="w-full  flex justify-center items-center">
-      <div className="bg-[#086278]/50 text-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
+      <div className="bg-[#086278]/50 text-cyan-400 p-8 rounded-lg shadow-lg max-w-lg mx-auto">
         <div className="flex flex-col items-center mb-6">
           <div className="bg-[#0e7e9a] p-4 rounded-full mb-4">
             <FaQuestionCircle className="text-4xl" />

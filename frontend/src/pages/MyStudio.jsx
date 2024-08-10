@@ -8,10 +8,9 @@ import { BiSolidVideos } from "react-icons/bi";
 import { CiSquarePlus } from "react-icons/ci";
 import { IconContext } from "react-icons";
 
-import { setSidebarFullSize } from "../features/ui.slice";
 import { setShowUploadVideo } from "../features/ui.slice";
 import { useDispatch, useSelector } from "react-redux";
-// import { useChannelStats } from "../hooks/studio.hook";
+import { useChannelStats } from "../hooks/studio.hook";
 import { VideoStats, UploadVideo, EditVideo } from "../components/index.js";
 import { CustomButton_ } from "@/components/Buttons/CustomButton";
 
@@ -22,36 +21,36 @@ function MyStudio() {
   const showUpload = useSelector((state) => state.ui.showUploadVideo);
   const videoForEdit = useSelector((state) => state.video.videoForEdit);
 
-  //   useEffect(() => {
-  //     dispatch(setSidebarFullSize(false));
+  // useEffect(() => {
+  //   // dispatch(setSidebarFullSize(false));
 
-  //     return () => {
-  //       dispatch(setSidebarFullSize(true));
-  //     };
-  //   }, [dispatch]);
+  //   return () => {
+  //     // dispatch(setSidebarFullSize(true));
+  //   };
+  // }, [dispatch]);
 
-  //   const { data: channelStats, isLoading: statsLoading } = useChannelStats();
+  const { data: channelStats, isLoading: statsLoading } = useChannelStats();
 
   const channelStatsItems = [
     {
       icon: <FaRegEye />,
       title: "Total views",
-      //   value: channelStats?.totalViews,
+      value: channelStats?.totalViews,
     },
     {
       icon: <FaUserFriends />,
       title: "Total subscribers",
-      //   value: channelStats?.totalSubscribers,
+      value: channelStats?.totalSubscribers,
     },
     {
       icon: <FaHeart />,
       title: "Total likes",
-      //   value: channelStats?.totalLikes,
+      value: channelStats?.totalLikes,
     },
     {
       icon: <BiSolidVideos />,
       title: "Total videos",
-      //   value: channelStats?.totalVideos,
+      value: channelStats?.totalVideos,
     },
   ];
 
@@ -68,7 +67,7 @@ function MyStudio() {
             <h1 className="text-2xl font-bold">
               Welcome Back, {channelInfo?.fullName}
             </h1>
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-cyan-700">
               Seamless Video Management, Elevated Results.
             </p>
           </div>
@@ -97,7 +96,7 @@ function MyStudio() {
                     {item.icon}
                   </span>
                 </div>
-                <h6 className="text-gray-300">{item.title}</h6>
+                <h6 className="text-cyan-700">{item.title}</h6>
                 <p className="text-3xl font-semibold">{item.value}</p>
               </div>
             ))}

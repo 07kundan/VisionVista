@@ -10,9 +10,9 @@ const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    setSidebarFullSize: (state, action) => {
-      state.sidebarFullSize = action.payload;
-    },
+    // setSidebarFullSize: (state, action) => {
+    //   state.sidebarFullSize = action.payload;
+    // },
     setShowUploadVideo: (state, action) => {
       state.showUploadVideo = action.payload;
     },

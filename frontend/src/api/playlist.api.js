@@ -22,10 +22,10 @@ export const getUserPlaylists = async (userId, isGuest) => {
 
 // get playlistById api call
 export const getPlaylistById = async (playlistId) => {
-  console.log("this get playlist by id called", playlistId);
+  // console.log("this get playlist by id called", playlistId);
   try {
     const { data } = await API.get(`/playlist/${playlistId}`);
-    console.log(data.data);
+    // console.log(data.data);
     return data?.data;
   } catch (error) {
     throw error?.response?.data?.error;

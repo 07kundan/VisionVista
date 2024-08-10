@@ -9,7 +9,7 @@ function Home() {
   const { data, fetchNextPage, isFetched, isFetching } = useVideos();
   const { ref, inView } = useInView();
 
-  // const isFetching = true;
+  // console.log("data", data);
 
   useEffect(() => {
     if (inView) {
@@ -45,7 +45,7 @@ function Home() {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 p-4 ">
           {isFetched &&
             data?.pages.map((page, index) => {
-              return (
+              return data?.pages.length > 1 ? (
                 <React.Fragment key={index}>
                   {isFetched &&
                     page.docs.map((video) => {
@@ -56,6 +56,11 @@ function Home() {
                       );
                     })}
                 </React.Fragment>
+              ) : (
+                <center className="w-[70vw] font-bold text-xl mt-6" key={index}>
+                  {" "}
+                  No videos uploaded yet{" "}
+                </center>
               );
             })}
 

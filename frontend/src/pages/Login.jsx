@@ -13,7 +13,7 @@ function Login() {
 
   const onLogin = (session) => {
     // console.log("called");
-    console.log(session);
+    // console.log(session);
     dispatch(setUser(session));
     navigate("/");
     // console.log("navigating");

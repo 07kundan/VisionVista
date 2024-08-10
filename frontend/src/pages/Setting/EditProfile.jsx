@@ -40,7 +40,7 @@ function EditProfile() {
           </span>
           <div className="mr-auto inline-block">
             <h1 className="font-bolg text-xl">{channelInfo?.fullName}</h1>
-            <p className="text-sm text-gray-400">@{channelInfo?.username}</p>
+            <p className="text-sm text-cyan-400">@{channelInfo?.username}</p>
           </div>
           <div className="inline-block">
             <div className="inline-flex min-w-[145px] justify-end">
@@ -53,7 +53,7 @@ function EditProfile() {
             </div>
           </div>
         </div>
-        <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row gap-x-2 overflow-auto border-b-2 border-gray-400 bg-[#121212] py-2 sm:top-[82px]">
+        <ul className="no-scrollbar sticky top-[66px] z-[2] flex flex-row gap-x-2 overflow-auto border-b-2 border-cyan-400 bg-[#121212] py-2 sm:top-[82px]">
           {editProfileItems.map((item, index) => (
             <li key={index} className="w-full">
               <NavLink
@@ -61,8 +61,8 @@ function EditProfile() {
                 className={
                   ({ isActive }) =>
                     isActive
-                      ? "w-full border-b-2 border-[#20b2d6] bg-white px-3 py-1.5 text-[#0d4655]" // Active link color
-                      : "w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400" // Inactive link color
+                      ? "w-full rounded-md border-[#20b2d6] bg-[#083f4d] px-3 py-1.5 text-cyan-400" // Active link color
+                      : "w-full rounded-md border-transparent px-3 py-1.5 text-cyan-400" // Inactive link color
                 }
               >
                 {item.name}

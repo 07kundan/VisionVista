@@ -13,7 +13,7 @@ function CoverImageInput({ children, setCoverImage, coverImage }) {
 
   const handleUploadCover = async () => {
     if (!coverPic) return; // No file selected
-    console.log(coverPic);
+    // console.log(coverPic);
 
     const uploadedCover = await updateCoverImg(coverPic);
 

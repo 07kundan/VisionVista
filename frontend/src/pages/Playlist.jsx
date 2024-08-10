@@ -1,9 +1,9 @@
 import React from "react";
-// import { usePlaylistById } from "../hooks/playlist.hook";
+import { usePlaylistById } from "../hooks/playlist.hook";
 import { Link } from "react-router-dom";
 import {
-  //   NextVideoCard,
-  //   PlaylistCard,
+  NextVideoCard,
+  PlaylistCard,
   PlaylistSkeleton,
 } from "../components/index";
 import { useParams } from "react-router-dom";
@@ -11,9 +11,7 @@ import { useParams } from "react-router-dom";
 function Playlist() {
   const { playlistId } = useParams();
 
-  //   const { data: playlist, isFetching, isFetched } = usePlaylistById(playlistId);
-
-  const isFetching = true;
+  const { data: playlist, isFetching, isFetched } = usePlaylistById(playlistId);
 
   if (isFetching) {
     return <PlaylistSkeleton />;
@@ -25,7 +23,7 @@ function Playlist() {
       <div className="flex justify-center p-4">
         <div className="w-full max-w-sm text-center">
           <p className="mb-3 w-full">
-            <span className="inline-flex rounded-full bg-[#E4D3FF] p-2 text-[#AE7AFF]">
+            <span className="inline-flex rounded-full bg-[#034353] p-2 text-[#14d0ff]">
               <span className="inline-block w-6">
                 <svg
                   style={{ width: "100%" }}
@@ -52,38 +50,38 @@ function Playlist() {
     );
   }
 
-  //   return (
-  //     <section className="w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
-  //       <div className="flex flex-wrap gap-x-4 gap-y-10 p-4 xl:flex-nowrap">
-  //         <div className="w-full shrink-0 sm:max-w-md xl:max-w-sm">
-  //           <PlaylistCard playlist={playlist} isEditAndDelete={true} />
-  //           <div className="mt-6 flex items-center gap-x-3">
-  //             <div className="h-16 w-16 shrink-0">
-  //               <img
-  //                 src={playlist?.owner?.avatar.url}
-  //                 alt="React Patterns"
-  //                 className="h-full w-full rounded-full object-cover"
-  //               />
-  //             </div>
-  //             <div className="w-full">
-  //               <h6 className="font-semibold">{playlist?.owner?.fullName}</h6>
-  //               <p className="text-sm text-gray-300">
-  //                 {playlist?.owner?.subscribers} Subscribers
-  //               </p>
-  //             </div>
-  //           </div>
-  //         </div>
-  //         <div className="flex w-full flex-col gap-y-4">
-  //           {playlist?.videos &&
-  //             playlist?.videos?.map((video) => (
-  //               <Link to={`/video/${video._id}`} key={video?._id}>
-  //                 <NextVideoCard video={video} owner={playlist.owner} />
-  //               </Link>
-  //             ))}
-  //         </div>
-  //       </div>
-  //     </section>
-  //   );
+  return (
+    <section className="w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
+      <div className="flex flex-wrap gap-x-4 gap-y-10 p-4 xl:flex-nowrap">
+        <div className="w-full shrink-0 sm:max-w-md xl:max-w-sm">
+          <PlaylistCard playlist={playlist} isEditAndDelete={true} />
+          <div className="mt-6 flex items-center gap-x-3">
+            <div className="h-16 w-16 shrink-0">
+              <img
+                src={playlist?.owner?.avatar.url}
+                alt="React Patterns"
+                className="h-full w-full rounded-full object-cover"
+              />
+            </div>
+            <div className="w-full">
+              <h6 className="font-semibold">{playlist?.owner?.fullName}</h6>
+              <p className="text-sm text-cyan-700">
+                {playlist?.owner?.subscribers} Subscribers
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex w-full flex-col gap-y-4">
+          {playlist?.videos &&
+            playlist?.videos?.map((video) => (
+              <Link to={`/video/${video._id}`} key={video?._id}>
+                <NextVideoCard video={video} owner={playlist.owner} />
+              </Link>
+            ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default Playlist;

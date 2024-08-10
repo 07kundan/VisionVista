@@ -24,7 +24,7 @@ API.interceptors.response.use(
     ) {
       originalRequest._retry = true; // Mark this request as retried
       try {
-        console.log("this refresh access token called");
+        // console.log("this refresh access token called");
         const { accessToken } = await refreshAccessToken(); //this function refreshes the token and returns the new one
         // Update the authorization header with the new token
         API.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
@@ -54,7 +54,7 @@ export const login = async (formData) => {
       throw new Error("invalid response structure");
     }
   } catch (error) {
-    console.log("error");
+    // console.log("error");
     toast.error("login unsuccessful", error?.response?.data?.error);
     throw error;
   }
@@ -94,8 +94,8 @@ export const register = async (data) => {
     toast.success(data?.message);
     return data?.data;
   } catch (error) {
-    toast.error(error);
-    console.log(error);
+    toast.error(error?.response?.data?.error);
+    // console.log("databaseerror", error?.response?.data?.error);
     throw error?.response?.data?.error;
   }
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useAddTweet } from "../../hooks/tweet.hook";
+import { useAddTweet } from "../../hooks/tweet.hook";
 import { useSelector } from "react-redux";
 import LoginPopUp from "../LoginSignup/LoginPopup";
 import { CustomButton_ } from "../Buttons/CustomButton";
@@ -9,7 +9,7 @@ function TweetInput() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [tweet, setTweet] = useState("");
 
-  //   const { mutateAsync: addTweet, isPending } = useAddTweet();
+  const { mutateAsync: addTweet, isPending } = useAddTweet();
 
   const sendTweet = async () => {
     if (!authStatus) {
@@ -33,12 +33,12 @@ function TweetInput() {
         <textarea
           className="w-full h-36 bg-transparent p-2 border border-[#20b2d6] rounded-lg "
           value={tweet}
-          // onChange={(e) => setTweet(e.target.value)}
+          onChange={(e) => setTweet(e.target.value)}
         ></textarea>
         <div className="mt-4 w-full inline-block">
           <CustomButton_
             className="font-bold text-base px-6 mr-4 rounded text-black float-end"
-            // onClick={sendTweet}
+            onClick={sendTweet}
           >
             Send
           </CustomButton_>
