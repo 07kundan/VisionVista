@@ -13,6 +13,8 @@ import { useUserChannelInfo } from "../../hooks/user.hook.js";
 import defaultCover from "../../assets/default-cover-photo.gif";
 
 function MyChannel() {
+  const isGuest = useSelector((state) => state.auth.guest);
+
   const { username } = useParams();
   const dispatch = useDispatch();
   const UserUsername = useSelector((state) => state.auth.user?.username);
@@ -48,7 +50,7 @@ function MyChannel() {
     },
   ];
 
-  if (isFetching) return <MyChannelSkeleton />;
+  if (isFetching || isGuest) return <MyChannelSkeleton />;
 
   return (
     <section className="w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">

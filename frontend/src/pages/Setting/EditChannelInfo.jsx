@@ -78,7 +78,7 @@ function EditChannelInfo() {
               </label>
               <div className="flex rounded-lg border border-[#20b2d6] ">
                 <p className="flex shrink-0 items-center border-r border-[#20b2d6] px-3 align-middle">
-                  shadowplay.vercel.app/
+                  vision-vista.vercel.app/
                 </p>
                 <input
                   type="text"

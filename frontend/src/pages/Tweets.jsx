@@ -10,6 +10,8 @@ import { useAllTweets } from "../hooks/tweet.hook";
 import { useInView } from "react-intersection-observer";
 
 function TweetPage() {
+  const isGuest = useSelector((state) => state.auth.guest);
+
   const currentUserId = useSelector((state) => state.auth.user?._id);
   const authStatus = useSelector((state) => state.auth.authStatus);
 
@@ -42,7 +44,7 @@ function TweetPage() {
         <TweetInput />
       </div>
       <div className="flex flex-col gap-2 p-4">
-        {isFetching && !isFetchingNextPage && !isRefetching ? (
+        {(isFetching && !isFetchingNextPage && !isRefetching) || isGuest ? (
           <div className="flex flex-col justify-center gap-3">
             {Array(8)
               .fill()
