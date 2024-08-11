@@ -67,7 +67,7 @@ export const uploadVideo = async (data) => {
   videoData.append("description", data.description);
   videoData.append("isPublished", true);
   try {
-    const { data } = await API.post("/video/");
+    const { data } = await API.post("/video/", videoData);
     toast.success(data?.message);
     return data?.data;
   } catch (error) {
