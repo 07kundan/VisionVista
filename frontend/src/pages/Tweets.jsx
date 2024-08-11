@@ -12,6 +12,22 @@ import { useInView } from "react-intersection-observer";
 function TweetPage() {
   const isGuest = useSelector((state) => state.auth.guest);
 
+  if (isGuest) {
+    return (
+      <div className="w-[50%] m-auto ">
+        <div className="flex flex-col gap-2 p-4">
+          <div className="flex flex-col justify-center gap-3">
+            {Array(8)
+              .fill()
+              .map((_, index) => (
+                <SubscriberTweetSkeleton key={index} />
+              ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const currentUserId = useSelector((state) => state.auth.user?._id);
   const authStatus = useSelector((state) => state.auth.authStatus);
 
@@ -44,7 +60,7 @@ function TweetPage() {
         <TweetInput />
       </div>
       <div className="flex flex-col gap-2 p-4">
-        {(isFetching && !isFetchingNextPage && !isRefetching) || isGuest ? (
+        {isFetching && !isFetchingNextPage && !isRefetching ? (
           <div className="flex flex-col justify-center gap-3">
             {Array(8)
               .fill()
