@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { timeAgo } from "../../Js/cal";
-import { Like } from "../Like";
+import { Like } from "../index";
 import { useDeleteComment, useEditComment } from "@/hooks/comment.hook";
 import { useSelector } from "react-redux";
-import DropDown from "../DropDown";
+import { DropDown } from "../index";
 import { Link } from "react-router-dom";
 
 function Comment({ comment }) {
