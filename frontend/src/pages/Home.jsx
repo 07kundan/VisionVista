@@ -9,7 +9,7 @@ function Home() {
   const { data, fetchNextPage, isFetched, isFetching } = useVideos();
   const { ref, inView } = useInView();
 
-  // console.log("data", data);
+  console.log("data", data);
 
   useEffect(() => {
     if (inView) {
@@ -45,7 +45,7 @@ function Home() {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 p-4 ">
           {isFetched &&
             data?.pages.map((page, index) => {
-              return data?.pages.length > 1 ? (
+              return data?.pages.length >= 1 ? (
                 <React.Fragment key={index}>
                   {isFetched &&
                     page.docs.map((video) => {
