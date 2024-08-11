@@ -5,8 +5,8 @@ import cors from "cors";
 const app = express();
 const allowedOrigins =
   process.env.NODE_ENV === "production"
-    ? process.env.PROD_ALLOWED_ORIGINS.split(",")
-    : process.env.DEV_ALLOWED_ORIGINS.split(",");
+    ? process.env.PROD_ALLOWED_ORIGINS?.split(",")
+    : process.env.DEV_ALLOWED_ORIGINS?.split(",");
 
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
