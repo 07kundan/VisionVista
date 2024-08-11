@@ -3,8 +3,22 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 const app = express();
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? process.env.PROD_ALLOWED_ORIGINS.split(",")
+    : process.env.DEV_ALLOWED_ORIGINS.split(",");
 
-app.use(cors());
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (allowedOrigins.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+
+app.use(cors(corsOptionsDelegate));
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
