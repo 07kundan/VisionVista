@@ -90,7 +90,7 @@ function Header() {
     <header className="z-[9999] sticky inset-x-0 top-0 w-full border-b border-[#20b2d6] bg-[#121212] py-1 px-4 sm:py-0">
       <nav className="mx-auto flex max-w-7xl items-center py-2">
         <Link to="/" className="flex items-center w-2/12">
-          <Logo className="shrink-0 sm:w-[8rem]" mobile={true} />
+          <Logo className="shrink-0 " mobile={true} />
         </Link>
 
         <Search />

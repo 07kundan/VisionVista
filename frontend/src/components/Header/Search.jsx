@@ -1,24 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 function Search() {
-  //   const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // navigate(`/search/${data?.query}`);
+    navigate(`/search/${data?.query}`);
   };
   return (
     <form
-      //   onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       className="w-full flex items-center gap-2 "
     >
       <div className="relative mx-auto rounded-lg w-full border-2 border-[#20b2d6] max-w-lg overflow-hidden sm:block">
         <input
-          className="w-full bg-transparent py-1 pl-10 pr-3 placeholder-white outline-none sm:py-2"
+          className="w-full bg-transparent py-1 pl-10 pr-3 placeholder-cyan-700 outline-none sm:py-2"
           placeholder="Search"
-          //   {...register("query", { required: true })}
+          {...register("query", { required: true })}
         />
 
         {/* search icon */}
